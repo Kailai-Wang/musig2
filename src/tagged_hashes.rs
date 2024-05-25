@@ -34,9 +34,9 @@
 //! ```
 
 use once_cell::sync::Lazy;
-use sha2_v08_wrapper::sha2::Sha256;
+use sha2_v08_wrapper::Sha256;
 
-use sha2_v08_wrapper::sha2::Digest as _;
+use sha2_v08_wrapper::Digest as _;
 
 fn with_tag_hash_prefix(tag_hash: [u8; 32]) -> Sha256 {
     let mut hasher = Sha256::new();
