@@ -385,10 +385,12 @@ impl<'snb> SecNonceBuilder<'snb> {
 
         // Cloning the hash engine state reduces the computations needed.
         let mut hasher_cloned = hasher.clone();
+
         hasher.input(&[0]);
-        let hash1 = <[u8; 32]>::from(hasher.result());
-        hasher_cloned = hasher_cloned.input(&[1]);
-        let hash2 = <[u8; 32]>::from(hasher_cloned.result());
+        let hash1: [u8; 32] = hasher.result().into();
+
+        hasher_cloned.input(&[1]);
+        let hash2: [u8; 32] = hasher_cloned.result().into();
 
         let k1 = match MaybeScalar::reduce_from(&hash1) {
             MaybeScalar::Zero => Scalar::one(),
