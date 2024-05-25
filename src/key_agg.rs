@@ -265,7 +265,7 @@ impl KeyAggContext {
     fn with_taproot_tweak_internal(self, merkle_root: &[u8]) -> Result<Self, TweakError> {
         // t = int(H_taptweak(xbytes(P), k))
         let mut hasher = tagged_hashes::TAPROOT_TWEAK_TAG_HASHER.clone();
-        hahser.input(&self.pubkey.serialize_xonly());
+        hasher.input(&self.pubkey.serialize_xonly());
         hasher.input(&merkle_root);
         let tweak_hash: [u8; 32] = hasher.result().into();
 
